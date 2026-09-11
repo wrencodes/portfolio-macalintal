@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harren Macalintal | Portfolio</title>
+<meta name="description" content="Portfolio of Harren Macalintal, an aspiring developer in Manila, Philippines, building interfaces on a foundation of Java, C#, C++, JavaScript, SQL, and Figma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="site-header">
+  <a href="#top" class="mark"><img src="logo.png" alt="Harren Macalintal logo" style="width:2.25rem;height:2.25rem;object-fit:cover;border-radius:6px;display:block;"></a>
+  <nav class="main-nav" id="main-nav">
+    <a href="#about" class="nav-link" data-section="about">About</a>
+    <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+    <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+    <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+    <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="hero-copy">
+      <p class="status-badge">
+        <span class="pin">📍</span> Manila, Philippines
+        <span class="dot-sep">|</span>
+        <span class="status-dot"></span> Open to work
+      </p>
+      <h1>Harren<br>Macalintal</h1>
+      <p></p>
+      <p class="typed-role">&gt; <span id="typed-text"></span><span class="cursor">|</span></p>
+      <div class="hero-actions">
+        <a href="Macalintal_Resume.pdf" class="btn btn-primary" download>Download CV</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+      <div class="social-row">
+        <a href="https://github.com/wrencodes" target="_blank" rel="noopener" aria-label="GitHub" class="icon-btn"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/harren-macalintal-411657318/" target="_blank" rel="noopener" aria-label="LinkedIn" class="icon-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:wrenmacalintal@gmail.com" aria-label="Email" class="icon-btn"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-portrait">
+      <div class="badge badge-focus">
+        <span class="badge-label">Focus</span>
+        <span class="badge-value">UI, Web, Software</span>
+      </div>
+      <div class="portrait-frame">
+        <img src="wrens.jpg" alt="Harren Macalintal" class="portrait-photo">
+      </div>
+      <div class="badge badge-impact">
+        <span class="badge-label">Learning</span>
+        <span class="badge-value">6 languages &amp; tools</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-gallery">
+      <img src="about-me-1.png" alt="Harren" class="about-photo about-photo-main">
+      <img src="about-me-2.jpg" alt="Harren" class="about-photo about-photo-top">
+      <img src="about-me-3.png" alt="Harren" class="about-photo about-photo-bottom">
+    </div>
+
+    <div class="about-content">
+      <h2 class="section-heading-reveal">About Harren</h2>
+      <div class="tag-row">
+        <span class="tag tag-teal">INTJ</span>
+        <span class="tag tag-gold">Libra</span>
+        <span class="tag tag-green">Matcha Enthusiast</span>
+      </div>
+      <p class="reveal stagger-3">
+        Hello! I'm <strong>Harren!</strong> - an aspiring <strong>Backend Developer</strong> and <strong>UI/UX Developer</strong> who loves
+        building clean, thoughtful, and functional user experiences. I am currently
+        studying <strong>Bachelor of Science in Information Technology.</strong>
+      </p>
+      <p class="about-more" id="about-more" hidden>
+        I've always been drawn to the behind the scene of how applications work, which
+        is why I am focusing on backend development. I love the logic behind structuring
+        data and building reliable systems. At the same time, I also have a strong interest
+        in <strong>IT Support</strong>. I genuinely enjoy the thrill of troubleshooting because it feels
+        like solving a puzzle.
+        <br><br>
+        Outside of coding or school, I also enjoy playing games such as Genshin Impact
+        and Mobile Legends. I like reading as well especially when it comes to Dark 
+        Academia genre. I'm also a firm believer that curiosity is a skill worth practicing!
+      </p>
+      <button class="btn btn-ghost" id="about-toggle" aria-expanded="false" aria-controls="about-more">
+        Keep reading
+      </button>
+    </div>
+  </section>
+
+ <section class="experience" id="experience">
+    <h2 class="section-heading-reveal">Experience</h2>
+    <p></p>
+    <div class="timeline">
+      <div class="timeline-draw"></div>
+      
+      
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-title-wrapper">
+              <h3>EdTech Intern</h3>
+              <span class="timeline-company">Ediphi Training Programs Inc.</span>
+            </div>
+            <div class="timeline-meta">
+              <span class="timeline-date">August 2026 - Present</span>
+            </div>
+          </div>
+          <p class="timeline-desc">
+            Support the deployment and administration of digital training platforms, ensuring seamless execution of educational programs. Provide technical troubleshooting and assistance to optimize the user learning experience.
+          </p>
+        </div>
+      </div>
+
+      
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-title-wrapper">
+              <h3>Part-time Barista</h3>
+              <span class="timeline-company">CoffeeBay</span>
+            </div>
+            <div class="timeline-meta">
+              <span class="timeline-date">June 2026 - Present</span>
+            </div>
+          </div>
+          <p class="timeline-desc">
+            Handle daily café operations including order taking, POS management, and precise beverage preparation. Collaborate with team members to manage inventory, restock supplies, and keep the workspace clean and organized.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="stack-detail" id="skills">
+    <h2>Skills</h2>
+
+    <div class="tech-marquee">
+      <div class="tech-row">
+        <div class="tech-track">
+          <span class="tech-pill"><i class="devicon-java-plain colored tech-logo-icon"></i> Java</span>
+          <span class="tech-pill"><i class="devicon-csharp-plain colored tech-logo-icon"></i> C#</span>
+          <span class="tech-pill"><img src="https://cdn.simpleicons.org/cplusplus/00599C" class="tech-logo" alt="C++"> C++</span>
+          <span class="tech-pill"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" class="tech-logo" alt="JavaScript"> JavaScript</span>
+          <span class="tech-pill"><img src="https://cdn.simpleicons.org/mysql/4479A1" class="tech-logo" alt="SQL"> SQL</span>
+          <span class="tech-pill"><img src="https://cdn.simpleicons.org/figma/F24E1E" class="tech-logo" alt="Figma"> Figma</span>
+          <span class="tech-pill"><i class="devicon-java-plain colored tech-logo-icon"></i> Java</span>
+          <span class="tech-pill"><i class="devicon-csharp-plain colored tech-logo-icon"></i> C#</span>
+          <span class="tech-pill"><img src="https://cdn.simpleicons.org/cplusplus/00599C" class="tech-logo" alt="C++"> C++</span>
+          <span class="tech-pill"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" class="tech-logo" alt="JavaScript"> JavaScript</span>
+          <span class="tech-pill"><img src="https://cdn.simpleicons.org/mysql/4479A1" class="tech-logo" alt="SQL"> SQL</span>
+          <span class="tech-pill"><img src="https://cdn.simpleicons.org/figma/F24E1E" class="tech-logo" alt="Figma"> Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="projects">
+    <h2 class="section-heading-reveal">Projects</h2>
+
+    <div class="project-grid">
+
+      
+      <a href="https://github.com/wrencodes/library-management-system" target="_blank" style="text-decoration: none; color: inherit;">
+        <article class="project-card">
+          <div class="project-img-wrapper">
+            
+            <img src="library-management-system.png" alt="Library Management System">
+          </div>
+          <div class="project-content">
+            <span class="project-meta">C# · Windows Form · SQL</span>
+            <h3>Library Management System</h3>
+          </div>
+        </article>
+      </a>
+
+      
+      <a href="https://github.com/wrencodes/old-portfolio" target="_blank" style="text-decoration: none; color: inherit;">
+        <article class="project-card">
+          <div class="project-img-wrapper">
+            <img src="old-portfolio.png" alt="Old Portfolio">
+          </div>
+          <div class="project-content">
+            <span class="project-meta">HTML · CSS · Javascript</span>
+            <h3>Old Portfolio</h3>  
+          </div>
+        </article>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="contact-eyebrow reveal">Get In Touch</p>
+    <h2 class="contact-heading reveal stagger-1">Contact Me</h2>
+
+    <div class="contact-pill">
+      <button class="contact-pill-item" id="copy-email" data-email="wrenmacalintal@gmail.com">
+        <span class="contact-pill-icon"><i class="fa-solid fa-envelope"></i></span>
+        wrenmacalintal@gmail.com
+        <span class="copy-status" id="copy-status"></span>
+      </button>
+      <span class="contact-pill-divider"></span>
+      <a href="https://github.com/wrencodes" target="_blank" rel="noopener" class="contact-pill-item">
+        <span class="contact-pill-icon"><i class="fa-brands fa-github"></i></span>
+        GitHub
+      </a>
+      <span class="contact-pill-divider"></span>
+      <a href="https://www.linkedin.com/in/harren-macalintal-411657318/" target="_blank" rel="noopener" class="contact-pill-item">
+        <span class="contact-pill-icon"><i class="fa-brands fa-linkedin-in"></i></span>
+        LinkedIn
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p class="footer-copyright">Copyright © <span id="year"></span> Harren Macalintal. All Rights Reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
