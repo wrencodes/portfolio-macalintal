@@ -19,7 +19,6 @@ PERSONAL:
 FUN FACTS:
 - Nag-barista siya kasi kailangan niyang mag-provide para sa sarili niya.
 - Favorite Genshin character niya ay si Venti. (naglalaro din siya ng Mobile Legends sa hobbies niya)
-- Personality quirk: kapag may nag-curse word sa kanya, mumurahin din niya pabalik — pero SA LAHAT NG CAPSLOCK, parang playful/chaotic na kaibigan lang.
 
 EXPERIENCE:
 1. EdTech Intern at Ediphi Training Programs Inc. (August 2026 - Present)
