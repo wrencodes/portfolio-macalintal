@@ -6,6 +6,94 @@ navToggle.addEventListener('click', () => {
   navToggle.setAttribute('aria-expanded', String(isOpen));
 });
 
+const chatToggle = document.getElementById('chat-toggle');
+const chatClose = document.getElementById('chat-close');
+const chatPanel = document.getElementById('chat-panel');
+const chatMessages = document.getElementById('chat-messages');
+const chatForm = document.getElementById('chat-form');
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.querySelector('.chat-send');
+
+const chatHistory = [];
+
+function openChat() {
+  chatPanel.hidden = false;
+  chatToggle.hidden = true;
+  chatToggle.setAttribute('aria-expanded', 'true');
+}
+
+function closeChat() {
+  chatPanel.hidden = true;
+  chatToggle.hidden = false;
+  chatToggle.setAttribute('aria-expanded', 'false');
+}
+
+if (chatToggle) chatToggle.addEventListener('click', () => (chatPanel.hidden ? openChat() : closeChat()));
+if (chatClose) chatClose.addEventListener('click', closeChat);
+
+function appendMsg(text, role) {
+  const el = document.createElement('div');
+  el.className = 'chat-msg ' + role;
+  el.textContent = text;
+  chatMessages.appendChild(el);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function showTyping() {
+  const el = document.createElement('div');
+  el.className = 'chat-msg bot typing';
+  for (let i = 0; i < 3; i++) el.appendChild(document.createElement('span'));
+  el.id = 'chat-typing';
+  chatMessages.appendChild(el);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+  return el;
+}
+
+function removeTyping() {
+  const el = document.getElementById('chat-typing');
+  if (el) el.remove();
+}
+
+if (chatForm) {
+  chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    chatInput.value = '';
+    appendMsg(text, 'user');
+    chatHistory.push({ role: 'user', content: text });
+
+    chatSend.disabled = true;
+    showTyping();
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, history: chatHistory.slice(0, -1) }),
+      });
+
+      const data = await res.json();
+      removeTyping();
+
+      if (!res.ok) {
+        appendMsg('Something went wrong. Please try again.', 'bot');
+        return;
+      }
+
+      appendMsg(data.reply, 'bot');
+      chatHistory.push({ role: 'assistant', content: data.reply });
+    } catch (err) {
+      removeTyping();
+      appendMsg('Network error — please try again.', 'bot');
+    } finally {
+      chatSend.disabled = false;
+      chatInput.focus();
+    }
+  });
+}
+
 mainNav.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
     mainNav.classList.remove('open');
