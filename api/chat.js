@@ -72,7 +72,7 @@ export default async function handler(req, res) {
     { role: 'user', parts: [{ text: userMessage }] },
   ];
 
-  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
 
   try {
     const geminiRes = await fetch(geminiUrl, {
