@@ -72,38 +72,49 @@ export default async function handler(req, res) {
     { role: 'user', parts: [{ text: userMessage }] },
   ];
 
-  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const models = ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite'];
 
-  try {
-    const geminiRes = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        contents,
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 500,
-        },
-      }),
-    });
+  const geminiBody = JSON.stringify({
+    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+    contents,
+    generationConfig: {
+      temperature: 0.7,
+      maxOutputTokens: 500,
+    },
+  });
 
-    const data = await geminiRes.json();
+  let lastError = null;
 
-    if (!geminiRes.ok) {
-      console.error('Gemini error:', JSON.stringify(data));
-      return res.status(502).json({ error: 'Gemini request failed. ' + (data.error?.message || '') });
+  for (const model of models) {
+    try {
+      const geminiRes = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: geminiBody,
+        }
+      );
+
+      const data = await geminiRes.json();
+
+      if (!geminiRes.ok) {
+        lastError = data.error?.message || `HTTP ${geminiRes.status}`;
+        console.error(`Gemini error (${model}):`, JSON.stringify(data));
+        continue;
+      }
+
+      const reply = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('')?.trim();
+
+      if (reply) {
+        return res.status(200).json({ reply });
+      }
+      lastError = 'Gemini returned an empty response.';
+    } catch (err) {
+      lastError = err.message;
+      console.error(`Chat handler error (${model}):`, err);
     }
-
-    const reply = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('')?.trim();
-
-    if (!reply) {
-      return res.status(502).json({ error: 'Gemini returned an empty response.' });
-    }
-
-    return res.status(200).json({ reply });
-  } catch (err) {
-    console.error('Chat handler error:', err);
-    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
   }
+
+  return res.status(502).json({ error: 'Gemini request failed: ' + lastError });
 }
