@@ -237,6 +237,40 @@
   <p class="footer-copyright">Copyright © <span id="year"></span> Harren Macalintal. All Rights Reserved.</p>
 </footer>
 
+<div class="chat-widget" id="chat-widget">
+  <button class="chat-toggle" id="chat-toggle" aria-label="Chat with Wren AI" aria-expanded="false">
+    <i class="fa-solid fa-comment-dots"></i>
+  </button>
+
+  <div class="chat-panel" id="chat-panel" hidden>
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <span class="chat-avatar"><i class="fa-solid fa-robot"></i></span>
+        <div>
+          <span class="chat-title">Ask Nami</span>
+          <span class="chat-subtitle">Harren's personal chatbot</span>
+        </div>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Close chat">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg bot">
+        Hi! I'm Nami, Harren's personal chatbot assistant. Ask me anything about him — experience, skills, projects, and more!
+      </div>
+    </div>
+
+    <form class="chat-form" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type your question..." autocomplete="off" aria-label="Type your question">
+      <button type="submit" class="chat-send" aria-label="Send message">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</div>
+
 <script src="js/script.js"></script>
 </body>
 </html>
