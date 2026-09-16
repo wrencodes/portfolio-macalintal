@@ -78,7 +78,7 @@ if (chatForm) {
       removeTyping();
 
       if (!res.ok) {
-        appendMsg('Something went wrong. Please try again.', 'bot');
+        appendMsg(data.error || 'Something went wrong. Please try again.', 'bot');
         return;
       }
 
