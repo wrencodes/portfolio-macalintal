@@ -54,45 +54,59 @@ function removeTyping() {
   if (el) el.remove();
 }
 
-if (chatForm) {
-  chatForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const text = chatInput.value.trim();
-    if (!text) return;
+async function sendMessage(textParam) {
+  const text = (textParam || chatInput.value || '').trim();
+  if (!text) return;
 
-    chatInput.value = '';
-    appendMsg(text, 'user');
-    chatHistory.push({ role: 'user', content: text });
+  chatInput.value = '';
+  hideSuggestions();
+  appendMsg(text, 'user');
+  chatHistory.push({ role: 'user', content: text });
 
-    chatSend.disabled = true;
-    showTyping();
+  chatSend.disabled = true;
+  showTyping();
 
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history: chatHistory.slice(0, -1) }),
-      });
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text, history: chatHistory.slice(0, -1) }),
+    });
 
-      const data = await res.json();
-      removeTyping();
+    const data = await res.json();
+    removeTyping();
 
-      if (!res.ok) {
-        appendMsg(data.error || 'Something went wrong. Please try again.', 'bot');
-        return;
-      }
-
-      appendMsg(data.reply, 'bot');
-      chatHistory.push({ role: 'assistant', content: data.reply });
-    } catch (err) {
-      removeTyping();
-      appendMsg('Network error — please try again.', 'bot');
-    } finally {
-      chatSend.disabled = false;
-      chatInput.focus();
+    if (!res.ok) {
+      appendMsg(data.error || 'Something went wrong. Please try again.', 'bot');
+      return;
     }
+
+    appendMsg(data.reply, 'bot');
+    chatHistory.push({ role: 'assistant', content: data.reply });
+  } catch (err) {
+    removeTyping();
+    appendMsg('Network error — please try again.', 'bot');
+  } finally {
+    chatSend.disabled = false;
+    chatInput.focus();
+  }
+}
+
+function hideSuggestions() {
+  const suggestions = document.getElementById('chat-suggestions');
+  if (suggestions) suggestions.hidden = true;
+}
+
+if (chatForm) {
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    sendMessage();
   });
 }
+
+document.querySelectorAll('.chat-chip').forEach((chip) => {
+  chip.addEventListener('click', () => sendMessage(chip.dataset.question));
+});
 
 mainNav.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
